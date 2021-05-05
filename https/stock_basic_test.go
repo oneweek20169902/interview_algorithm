@@ -6,7 +6,14 @@ import (
 )
 
 func TestGetStockBasic(t *testing.T) {
-	Get()
+	stocks, err := getStockBasicList()
+	if err != nil {
+		t.Error(err)
+	}
+
+	if len(stocks) > 0 {
+
+	}
 }
 
 func TestJsonDeser(t *testing.T) {

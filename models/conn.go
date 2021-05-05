@@ -16,6 +16,4 @@ func init() {
 		panic(err)
 	}
 	dbConn.LogMode(true)
-
-	defer dbConn.Close()
 }
