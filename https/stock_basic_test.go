@@ -10,7 +10,6 @@ func TestGetStockBasic(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
-
 	if len(stocks) > 0 {
 
 	}

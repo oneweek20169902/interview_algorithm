@@ -32,14 +32,14 @@ func (s *StockBasic) Insert() error {
 	return db.Error
 }
 
-func (s *StockBasic) GetStockBasicById() bool {
-	res := dbConn.Where("id = ?", s.Id).First(&s).RecordNotFound()
-	return res
+func (s *StockBasic) GetStockBasicById() *StockBasic {
+	dbConn.Where("id = ?", s.Id).First(&s)
+	return s
 }
 
-func (s *StockBasic) GetStockBasicByCode() bool {
-	res := dbConn.Where("code = ?", s.Code).First(&s).RecordNotFound()
-	return res
+func (s *StockBasic) GetStockBasicByCode() int {
+	dbConn.Raw("SELECT Id FROM stock_basic WHERE code =?;", s.Code).Scan(&s)
+	return s.Id
 }
 
 func (s *StockBasic) Update() error {
