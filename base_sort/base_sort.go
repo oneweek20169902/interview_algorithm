@@ -44,3 +44,21 @@ func QuickSort(arr []int, left, right int) {
 	QuickSort(arr, i+1, right) // 递归排序右边的子数组
 
 }
+
+// InsertionSort 插入排序
+func InsertionSort(nums []int) []int {
+	if len(nums) <= 1 {
+		return nums
+	}
+	for i := 0; i < len(nums); i++ {
+		value := nums[i]
+		j := i - 1
+		for j >= 0 && nums[j] > value {
+			nums[j+1] = nums[i]
+			j--
+		}
+		// 插入数据 value
+		nums[j+1] = value
+	}
+	return nums
+}

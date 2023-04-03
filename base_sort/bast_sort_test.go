@@ -41,3 +41,16 @@ func TestQuickSort(t *testing.T) {
 	}
 	fmt.Println("Sorting succeeded, result:", arr)
 }
+
+func TestInsertionSort(t *testing.T) {
+	arr := []int{3, 2, 1, 5, 4}
+	InsertionSort(arr)
+	expected := []int{1, 2, 3, 4, 5}
+	for i := 0; i < len(arr); i++ {
+		if arr[i] != expected[i] {
+			t.Errorf("Sorting failed, expected %v but got %v", expected, arr)
+			return
+		}
+	}
+	fmt.Println("Sorting succeeded, result:", arr)
+}
