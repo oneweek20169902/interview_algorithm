@@ -2,6 +2,7 @@ package recursive
 
 import (
 	"math"
+	"sort"
 	"testing"
 )
 
@@ -47,5 +48,13 @@ func TestGetMax(t *testing.T) {
 	result = GetMax([]int{42})
 	if result != 42 {
 		t.Errorf("Expected maximum value to be %d, but got %d", 42, result)
+	}
+}
+
+func TestQuickSort(t *testing.T) {
+	arr := []int{3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5}
+	QuickSort(arr, 0, len(arr)-1)
+	if !sort.IntsAreSorted(arr) {
+		t.Errorf("failed to sort arr: %v", arr)
 	}
 }

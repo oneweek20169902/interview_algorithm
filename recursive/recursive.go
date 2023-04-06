@@ -3,7 +3,6 @@ package recursive
 import (
 	"github.com/spf13/cast"
 	"math"
-	"math/rand"
 )
 
 func GetMax(arr []int) int {
@@ -33,10 +32,9 @@ func DutchFlag(arr []int, num int) {
 // QuickSort 快排
 func QuickSort(arr []int, l, r int) {
 	if l < r {
-		swap(arr, rand.Intn(l+(r-l+1)), r) //有随机行为所以复杂度是O(n*logn)
 		p := partition(arr, l, r)
-		QuickSort(arr, l, p[0]-1) //< 区
-		QuickSort(arr, p[0]+1, r) //> 区
+		QuickSort(arr, l, p-1) //< 区
+		QuickSort(arr, p+1, r) //> 区
 	}
 }
 
@@ -45,24 +43,15 @@ func QuickSort(arr []int, l, r int) {
 默认以arr[r]做划分,arr[r] -> p  <p ==p   >p
 返回等于区域(左边界，有边界) 所以返回一个长度为2的数组res,res[0] res[1]
 */
-func partition(arr []int, l, r int) []int {
-	less := l - 1  //<区右边界
-	more := r      // >区左边界
-	for l < more { //L表示当前熟的位置 arr[R]    -> 划分值
-		if arr[l] < arr[r] { //当前书 <划分值
-			lless := less + 1
-			swap(arr, lless, l)
-		} else if arr[l] > arr[r] { //当前数>划分值
-			mmore := more - 1
-			swap(arr, mmore, l)
-		} else {
-			l++
+func partition(arr []int, l, r int) int {
+	pivot := arr[r]
+	i := l - 1 //<区右边界
+	for j := l; j < r; j++ {
+		if arr[j] >= pivot {
+			i++
+			arr[i], arr[j] = arr[j], arr[i]
 		}
 	}
-	swap(arr, more, r)
-	return []int{less + 1, more}
-}
-
-func swap(arr []int, l, r int) {
-
+	arr[i+1], arr[r] = arr[r], arr[i+1]
+	return i + 1
 }
