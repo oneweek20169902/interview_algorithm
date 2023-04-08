@@ -71,6 +71,17 @@ func partition(arr []int, l, r int) int {
 	return i + 1
 }
 
+/*
+给定一个包含红色、白色和蓝色、共 n 个元素的数组 nums ，原地对它们进行排序，使得相同颜色的元素相邻，并按照红色、白色、蓝色顺序排列。
+
+我们使用整数 0、 1 和 2 分别表示红色、白色和蓝色。
+
+必须在不使用库内置的 sort 函数的情况下解决这个问题
+
+来源：力扣（LeetCode）
+链接：https://leetcode.cn/problems/sort-colors
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+*/
 func sortColors(nums []int) {
 	p0, p1 := 0, 0
 	for i, v := range nums {
