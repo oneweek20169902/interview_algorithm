@@ -20,13 +20,28 @@ func process(arr []int, l, r int) int {
 }
 
 // DutchFlag 荷兰国旗
-func DutchFlag(arr []int, num int) {
+func DutchFlag(arr []int, num int) []int {
 	/*
 		1. i<num, i和<区域下一个交换，<区域右扩，i++
 		2. i==num, i++
 		3.i>num,i和>区域前一个交换，>区域右扩,i原地不动
 	*/
-
+	i := 0
+	less := -1
+	more := len(arr) - 1
+	for i <= more {
+		if arr[i] < num {
+			less += 1
+			arr[i], arr[less] = arr[less], arr[i]
+			i++
+		} else if arr[i] == num {
+			i++
+		} else {
+			arr[i], arr[more] = arr[more], arr[i]
+			more--
+		}
+	}
+	return []int{arr[i] - 1, arr[more]}
 }
 
 // QuickSort 快排
@@ -54,4 +69,22 @@ func partition(arr []int, l, r int) int {
 	}
 	arr[i+1], arr[r] = arr[r], arr[i+1]
 	return i + 1
+}
+
+func sortColors(nums []int) {
+	p0, p1 := 0, 0
+	for i, v := range nums {
+		if v == 0 {
+			nums[p0], nums[i] = nums[i], nums[p0]
+			if p0 < p1 {
+				nums[p1], nums[i] = nums[i], nums[p1]
+			}
+			p0++
+			p1++
+		}
+		if v == 1 {
+			nums[p1], nums[i] = nums[i], nums[p1]
+			p1++
+		}
+	}
 }

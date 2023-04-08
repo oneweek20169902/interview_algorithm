@@ -58,3 +58,16 @@ func TestQuickSort(t *testing.T) {
 		t.Errorf("failed to sort arr: %v", arr)
 	}
 }
+
+func TestDutchFlag(t *testing.T) {
+	arr := []int{2, 3, 1, 9, 7, 6, 1, 4, 5}
+	v := DutchFlag(arr, 4)
+	t.Log(v)
+
+}
+
+func TestSortColors(t *testing.T) {
+	arr := []int{2, 0, 2, 1, 1, 0}
+	sortColors(arr)
+
+}
