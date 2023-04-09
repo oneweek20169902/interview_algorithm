@@ -71,3 +71,10 @@ func TestSortColors(t *testing.T) {
 	sortColors(arr)
 
 }
+
+func TestHeapSort(t *testing.T) {
+	nums := []int{3, 5, 3, 0, 8, 6}
+	newNums := HeapSort(nums)
+	t.Log(newNums)
+
+}

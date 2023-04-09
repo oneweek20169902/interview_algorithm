@@ -1,6 +1,7 @@
 package recursive
 
 import (
+	"fmt"
 	"github.com/spf13/cast"
 	"math"
 )
@@ -107,3 +108,38 @@ func sortColors(nums []int) {
 大根堆 每一个子树的头结点都是最大值
 小根堆 每一个子树的头结点都是最小值
 */
+
+func heapify(nums []int, parent, len int) {
+	max := parent
+	l := parent*2 + 1
+	r := parent*2 + 2
+	if l < len && nums[l] > nums[max] {
+		max = l
+	}
+	if r < len && nums[r] > nums[max] {
+		max = r
+	}
+	if parent != max {
+		nums[max], nums[parent] = nums[parent], nums[max]
+		heapify(nums, max, len)
+	}
+}
+
+func buildHeep(nums []int, len int) {
+	parent := len/2 - 1
+	for parent >= 0 {
+		heapify(nums, parent, len)
+		parent--
+	}
+	fmt.Println(nums[0:len])
+}
+
+func HeapSort(nums []int) []int {
+	i := len(nums)
+	for i > 1 {
+		buildHeep(nums, i)
+		nums[0], nums[i-1] = nums[i-1], nums[0]
+		i--
+	}
+	return nums
+}
