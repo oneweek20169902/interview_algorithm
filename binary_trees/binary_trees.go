@@ -30,6 +30,7 @@ var rootNode = &Node{
 1、先序：头、左、右
 2、中序：左、头、右
 3、后序：左、右、头
+
 */
 
 /*
@@ -117,3 +118,26 @@ func IsBST(head *Node) bool {
 /*
 平衡树是左节点和右节点的的高度差为1
 */
+
+type TreeNode struct {
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
+}
+
+// lowestCommonAncestor 二叉树最近的公共祖先
+func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
+	if root == nil || root == p || root == q {
+		return root
+	}
+	left := lowestCommonAncestor(root.Left, p, q)
+	right := lowestCommonAncestor(root.Right, p, q)
+	if left != nil && right != nil {
+		return root
+	}
+	if left != nil {
+		return left
+	} else {
+		return right
+	}
+}
