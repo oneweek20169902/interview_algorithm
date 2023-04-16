@@ -1,9 +1,28 @@
 package binary_trees
 
 type Node struct {
-	value int
-	left  *Node
-	right *Node
+	Value     int
+	LeftNode  *Node
+	RightNode *Node
+}
+
+var rootNode = &Node{
+	Value: 1,
+	LeftNode: &Node{
+		Value: 2,
+		LeftNode: &Node{
+			Value: 4,
+			RightNode: &Node{
+				Value:     6,
+				LeftNode:  &Node{Value: 7},
+				RightNode: &Node{Value: 8},
+			},
+		},
+	},
+	RightNode: &Node{
+		Value:     3,
+		RightNode: &Node{Value: 5},
+	},
 }
 
 /*
@@ -15,7 +34,7 @@ type Node struct {
 
 /*
 非递归遍历：
-先序：
+先序：x
 	1、从栈中弹出一个节点cur
 	2、打印处理cur
 	3、先右再左（如果有）
@@ -58,4 +77,43 @@ System.out. printin();
 
 中序：
 每棵子树左边界(顺着左节点查找)进栈，依次弹出的过程中对弹出的右节点重复
+*/
+
+/*
+搜索二叉树：左树都比右树小
+*/
+
+var preValue int
+
+func IsBST(head *Node) bool {
+	if head == nil {
+		return false
+	}
+	isLeftBst := IsBST(head.LeftNode)
+	if !isLeftBst {
+		return false
+	}
+	if head.Value <= preValue {
+		return false
+	} else {
+		preValue = head.Value
+	}
+	return IsBST(head)
+}
+
+/*
+如何判断完全二叉树：
+1、如果右节点没有左节点
+2、如果左右节点不双全的情况，后面的遇到的节点都必须是叶节点
+*/
+
+/*
+如何判断满二叉树：
+1、求最大深度为L
+2、求节点数N
+3、如果是满二叉树必然满足N=2^L-1
+*/
+
+/*
+平衡树是左节点和右节点的的高度差为1
 */
