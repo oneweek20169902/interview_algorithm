@@ -1,6 +1,7 @@
 package recursive
 
 import (
+	"fmt"
 	"math"
 	"sort"
 	"testing"
@@ -68,11 +69,16 @@ func TestDutchFlag(t *testing.T) {
 
 func TestSortColors(t *testing.T) {
 	arr := []int{2, 0, 2, 1, 1, 0}
-	sortColors(arr)
+	sortColors1(arr)
 
 }
 
 func TestHeapSort(t *testing.T) {
+
+	str := "【慧泽园·乐凯店】尊敬的贵宾，您好！感谢您莅临慧泽园！\\\\r\\\\n餐位(包厢):三楼雅间-321\\\\r\\\\n日期:2023年04月11日 周二 晚市 \\\\r\\\\n人数:1桌10人\\\\r\\\\n联系人:0312-3120333(詹红艳18617777513)\\\\r\\\\n导航:https://dwz.cn/o5tBITwv\\\\r\\\\n邀请函:https://dwz.cn/EAfghYJ0\\\\n地址：乐凯北大街980号，慧泽园·乐凯店全体员工恭候您的光临！\\\\r\\\\n\\"
+
+	fmt.Println(len([]rune(str)))
+
 	nums := []int{3, 5, 3, 0, 8, 6}
 	newNums := HeapSort(nums)
 	t.Log(newNums)
